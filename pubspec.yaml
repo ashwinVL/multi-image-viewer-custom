@@ -1,7 +1,7 @@
-name: multi_image_layout
+name: multi_image_layout_custom
 description: Flexible gallery package for displaying multiple network and asset images in adaptive layouts.
 version: 0.1.2
-homepage: https://github.com/donaldamadi/multi-image-viewer
+homepage: https://github.com/ashwinVL/multi-image-viewer-custom
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
