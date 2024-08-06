@@ -9,6 +9,7 @@ class MultiImageViewer extends StatelessWidget {
       fontSize: 30,
       color: Colors.white,
     ),
+    this.fit = BoxFit.cover,
     this.height = 205,
     this.width,
     this.networkImageHeaders,
@@ -29,6 +30,8 @@ class MultiImageViewer extends StatelessWidget {
   ///
   /// Images are compulsory while captions are optional.
   final List<ImageModel> images;
+
+  final BoxFit fit;
 
   /// Height of the image(s).
   ///
@@ -66,7 +69,7 @@ class MultiImageViewer extends StatelessWidget {
               color: backgroundColor,
               image: DecorationImage(
                   image: _createNetworkImage(images.first.imageUrl),
-                  fit: BoxFit.contain),
+                  fit: fit),
               borderRadius: const BorderRadius.all(
                 Radius.circular(5),
               ),
@@ -92,7 +95,7 @@ class MultiImageViewer extends StatelessWidget {
                         color: backgroundColor,
                         image: DecorationImage(
                             image: _createNetworkImage(images.first.imageUrl),
-                            fit: BoxFit.contain),
+                            fit: fit),
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
                             bottomLeft: Radius.circular(5))),
@@ -113,7 +116,7 @@ class MultiImageViewer extends StatelessWidget {
                         color: backgroundColor,
                         image: DecorationImage(
                             image: _createNetworkImage(images[1].imageUrl),
-                            fit: BoxFit.contain),
+                            fit: fit),
                         borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(5),
                             bottomRight: Radius.circular(5))),
@@ -144,7 +147,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image: _createNetworkImage(
                                       images.first.imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5))),
                         ),
@@ -164,7 +167,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image:
                                       _createNetworkImage(images[1].imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(5))),
                         ),
@@ -186,7 +189,7 @@ class MultiImageViewer extends StatelessWidget {
                         color: backgroundColor,
                         image: DecorationImage(
                             image: _createNetworkImage(images[2].imageUrl),
-                            fit: BoxFit.contain),
+                            fit: fit),
                         borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(5),
                             bottomRight: Radius.circular(5))),
@@ -218,7 +221,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image: _createNetworkImage(
                                       images.first.imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5))),
                         ),
@@ -238,7 +241,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image:
                                       _createNetworkImage(images[1].imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(5))),
                         ),
@@ -264,7 +267,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image:
                                       _createNetworkImage(images[2].imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(5))),
                         ),
@@ -284,7 +287,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image:
                                       _createNetworkImage(images[3].imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   bottomRight: Radius.circular(5))),
                         ),
@@ -317,7 +320,7 @@ class MultiImageViewer extends StatelessWidget {
                               image: DecorationImage(
                                   image: _createNetworkImage(
                                       images.first.imageUrl),
-                                  fit: BoxFit.contain),
+                                  fit: fit),
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(5))),
                         ),
@@ -336,7 +339,7 @@ class MultiImageViewer extends StatelessWidget {
                             color: backgroundColor,
                             image: DecorationImage(
                                 image: _createNetworkImage(images[1].imageUrl),
-                                fit: BoxFit.contain),
+                                fit: fit),
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(5),
                             ),
@@ -363,7 +366,7 @@ class MultiImageViewer extends StatelessWidget {
                             color: backgroundColor,
                             image: DecorationImage(
                                 image: _createNetworkImage(images[2].imageUrl),
-                                fit: BoxFit.contain),
+                                fit: fit),
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(5),
                             ),
@@ -384,7 +387,7 @@ class MultiImageViewer extends StatelessWidget {
                             color: backgroundColor,
                             image: DecorationImage(
                                 image: _createNetworkImage(images[3].imageUrl),
-                                fit: BoxFit.contain),
+                                fit: fit),
                             borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(5),
                             ),
