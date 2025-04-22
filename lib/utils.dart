@@ -2,7 +2,7 @@ import 'multi_image_layout.dart';
 
 /// View Image(s)
 void openImage(BuildContext context, final int index, List<String> unitImages,
-    List<String>? captions, Map<String, String>? headers) {
+    List<String>? captions, Map<String, String>? headers, Function(String url)? customShareFunction, Function(String url)? customSaveFunction) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -15,6 +15,8 @@ void openImage(BuildContext context, final int index, List<String> unitImages,
         initialIndex: index,
         scrollDirection: Axis.horizontal,
         headers: headers,
+        customSaveFunction: customSaveFunction,
+        customShareFunction: customShareFunction,
       ),
     ),
   );
