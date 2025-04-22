@@ -13,6 +13,8 @@ class GalleryPhotoViewWrapper extends StatefulWidget {
     this.captions,
     this.scrollDirection = Axis.horizontal,
     this.headers,
+    this.customSaveFunction,
+    this.customShareFunction,
   }) : pageController = PageController(initialPage: initialIndex!);
 
   final BoxDecoration? backgroundDecoration;
@@ -25,6 +27,8 @@ class GalleryPhotoViewWrapper extends StatefulWidget {
   final dynamic minScale;
   final PageController pageController;
   final Axis scrollDirection;
+  final Function(String imageUrl)? customSaveFunction;
+  final Function(String imageUrl)? customShareFunction;
   @override
   State<StatefulWidget> createState() {
     return _GalleryPhotoViewWrapperState();
@@ -177,35 +181,79 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
             Positioned(
               top: 80,
               right: 15,
-              child: IconButton(
-                color: Colors.white,
-                constraints: const BoxConstraints(),
-                padding: EdgeInsets.zero,
-                icon: const Icon(Icons.download),
-                onPressed: () async {
-                  bool status = false;
-                  debugPrint(widget.galleryItems![currentIndex!]);
-                  if (widget.galleryItems![currentIndex!].contains('http')) {
-                    status = await _saveNetworkImage(
-                        widget.galleryItems![currentIndex!]);
-                  } else {
-                    status = await _saveLocalImage();
-                  }
-                  if (!mounted) return;
-                  if (status == true) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Image saved to gallery"),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Error saving image"),
-                      ),
-                    );
-                  }
-                },
+              child: Row(
+                children: [
+                  IconButton(
+                    color: Colors.white,
+                    constraints: const BoxConstraints(),
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.share),
+                    onPressed: () async {
+                      bool status = false;
+                      debugPrint(widget.galleryItems![currentIndex!]);
+                      if (widget.galleryItems![currentIndex!]
+                          .contains('http')) {
+                        if (widget.customShareFunction != null) {
+                          widget.customShareFunction!(
+                              widget.galleryItems![currentIndex!]);
+                        } else {
+                          status = await _saveNetworkImage(
+                              widget.galleryItems![currentIndex!]);
+                          if (!mounted) return;
+                          if (status == true) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Image saved to gallery"),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Error sharing image"),
+                              ),
+                            );
+                          }
+                        }
+                      }
+                    },
+                  ),
+                  IconButton(
+                    color: Colors.white,
+                    constraints: const BoxConstraints(),
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.download),
+                    onPressed: () async {
+                      bool status = false;
+                      debugPrint(widget.galleryItems![currentIndex!]);
+                      if (widget.galleryItems![currentIndex!]
+                          .contains('http')) {
+                        if (widget.customSaveFunction != null) {
+                          widget.customSaveFunction!(
+                              widget.galleryItems![currentIndex!]);
+                        } else {
+                          status = await _saveNetworkImage(
+                              widget.galleryItems![currentIndex!]);
+                        }
+                      } else {
+                        status = await _saveLocalImage();
+                      }
+                      if (!mounted) return;
+                      if (status == true) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Image saved to gallery"),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Error saving image"),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
               ),
             )
           ],
