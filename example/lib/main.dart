@@ -1,4 +1,4 @@
-import 'package:multi_image_layout_custom/multi_image_layout.dart';
+import 'package:multi_image_layout/multi_image_layout.dart';
 
 void main() {
   runApp(const MyApp());
