@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:multi_image_layout/multi_image_layout.dart';
+import 'package:multi_image_layout_custom/multi_image_layout.dart';
 
 void main() {
   testWidgets('GalleryPhotoViewWrapper displays image and caption',
