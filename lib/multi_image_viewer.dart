@@ -13,6 +13,8 @@ class MultiImageViewer extends StatelessWidget {
     this.height = 205,
     this.width,
     this.networkImageHeaders,
+    this.customSaveFunction,
+    this.customShareFunction,
   });
 
   /// Headers for network image
@@ -41,6 +43,9 @@ class MultiImageViewer extends StatelessWidget {
   /// Width of the image(s).
   final double? width;
 
+  final Function(String imageUrl)? customSaveFunction;
+  final Function(String imageUrl)? customShareFunction;
+
   CachedNetworkImageProvider _createNetworkImage(String path) =>
       CachedNetworkImageProvider(path, headers: networkImageHeaders);
 
@@ -61,7 +66,7 @@ class MultiImageViewer extends StatelessWidget {
       case 1:
         return GestureDetector(
           onTap: () => openImage(
-              context, 0, imagesList, captionList, networkImageHeaders),
+              context, 0, imagesList, captionList, networkImageHeaders, customShareFunction, customSaveFunction),
           child: Container(
             height: height,
             width: width ?? defaultWidth,
@@ -87,7 +92,7 @@ class MultiImageViewer extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 1),
                 child: GestureDetector(
                   onTap: () => openImage(
-                      context, 0, imagesList, captionList, networkImageHeaders),
+                      context, 0, imagesList, captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                   child: Container(
                     height: height,
                     width: width == null ? defaultWidth / 2 : width! / 2,
@@ -108,7 +113,7 @@ class MultiImageViewer extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 1),
                 child: GestureDetector(
                   onTap: () => openImage(
-                      context, 1, imagesList, captionList, networkImageHeaders),
+                      context, 1, imagesList, captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                   child: Container(
                     height: height,
                     width: width == null ? defaultWidth / 2 : width! / 2,
@@ -140,7 +145,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2, bottom: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 0, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           decoration: BoxDecoration(
                               color: backgroundColor,
@@ -159,7 +164,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 1, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -182,7 +187,7 @@ class MultiImageViewer extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 0),
                 child: GestureDetector(
                   onTap: () => openImage(
-                      context, 2, imagesList, captionList, networkImageHeaders),
+                      context, 2, imagesList, captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                   child: Container(
                     width: width == null ? defaultWidth / 2 : width! / 2,
                     decoration: BoxDecoration(
@@ -213,7 +218,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2, bottom: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 0, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           // width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -233,7 +238,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 1, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -259,7 +264,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 0, bottom: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 2, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -279,7 +284,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 0, top: 0),
                       child: GestureDetector(
                         onTap: () => openImage(context, 3, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -313,7 +318,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2, bottom: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 0, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           decoration: BoxDecoration(
                               color: backgroundColor,
@@ -332,7 +337,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 1, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -359,7 +364,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 0, bottom: 2),
                       child: GestureDetector(
                         onTap: () => openImage(context, 2, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
@@ -380,7 +385,7 @@ class MultiImageViewer extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 0, top: 0),
                       child: GestureDetector(
                         onTap: () => openImage(context, 3, imagesList,
-                            captionList, networkImageHeaders),
+                            captionList, networkImageHeaders, customShareFunction, customSaveFunction),
                         child: Container(
                           width: width == null ? defaultWidth / 2 : width! / 2,
                           decoration: BoxDecoration(
